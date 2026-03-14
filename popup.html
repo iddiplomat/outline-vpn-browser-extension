@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 128 128" fill="none">
+          <path d="M64 10L116 30Q116 90 64 122Q12 90 12 30Z" fill="currentColor" stroke="currentColor" stroke-width="3"/>
+          <text x="64" y="76" text-anchor="middle" fill="#1e1e2e" font-size="32" font-weight="bold" font-family="sans-serif">VPN</text>
+        </svg>
+      </div>
+      <h1>Outline VPN</h1>
+      <div class="status-badge" id="statusBadge">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">Отключён</span>
+      </div>
+    </header>
+
+    <div class="server-info" id="serverInfo" style="display:none">
+      <div class="info-row">
+        <span class="info-label">Сервер</span>
+        <span class="info-value" id="serverHost">—</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Порт</span>
+        <span class="info-value" id="serverPort">—</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Шифрование</span>
+        <span class="info-value" id="serverMethod">—</span>
+      </div>
+    </div>
+
+    <section class="section">
+      <label class="label" for="ssKey">Access Key</label>
+      <textarea id="ssKey" class="input textarea" placeholder="ss://..." rows="3" spellcheck="false"></textarea>
+    </section>
+
+    <section class="section">
+      <label class="label" for="proxyMode">Режим</label>
+      <select id="proxyMode" class="input select">
+        <option value="selected">Только выбранные сайты</option>
+        <option value="all">Весь трафик</option>
+      </select>
+    </section>
+
+    <section class="section" id="sitesSection">
+      <label class="label" for="sites">Сайты (по одному на строку)</label>
+      <textarea id="sites" class="input textarea" placeholder="example.com&#10;*.example.org" rows="4" spellcheck="false"></textarea>
+    </section>
+
+    <section class="section">
+      <label class="label" for="localPort">Локальный порт SOCKS5</label>
+      <input id="localPort" class="input" type="number" value="1080" min="1024" max="65535">
+    </section>
+
+    <button id="toggleBtn" class="btn btn-connect">
+      <span id="btnText">Подключиться</span>
+    </button>
+
+    <div class="error-msg" id="errorMsg" style="display:none"></div>
+
+    <footer class="footer">
+      <span class="hint">Убедитесь, что локальный прокси запущен</span>
+      <a href="#" id="helpLink" class="help-link">Как запустить?</a>
+    </footer>
+
+    <div class="help-panel" id="helpPanel" style="display:none">
+      <h3>Запуск локального прокси</h3>
+      <p>Запустите <code>start-proxy.bat</code> из папки расширения, либо выполните:</p>
+      <pre>sslocal -b 127.0.0.1:1080 -s СЕРВЕР:ПОРТ -k ПАРОЛЬ -m МЕТОД</pre>
+      <p>Скачать sslocal: <a href="https://github.com/shadowsocks/shadowsocks-rust/releases" target="_blank">shadowsocks-rust</a></p>
+      <button class="btn-small" id="closeHelp">Закрыть</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

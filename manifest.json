@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Outline VPN Proxy",
+  "version": "1.0.0",
+  "description": "Route browser traffic through Outline VPN (Shadowsocks) proxy",
+  "permissions": [
+    "proxy",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Outline VPN Proxy"
+  }
+}
